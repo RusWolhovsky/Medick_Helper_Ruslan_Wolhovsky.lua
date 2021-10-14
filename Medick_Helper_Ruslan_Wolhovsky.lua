@@ -2566,6 +2566,7 @@ function imgui.OnDrawFrame()
 	if imgui.Button(fa.ICON_BOOK .. u8' Форумный раздел МОН', imgui.ImVec2(220, 30)) then os.execute('explorer "https://evolve-rp.su/index.php?forums/ministerstvo-zdravooxranenija.280/"')
 	btn_size = not btn_size
 	end
+	imgui.SameLine()
 	if imgui.Button(fa.ICON_COGS .. u8' Очистить чат ', imgui.ImVec2(220, 30)) then
 		sampAddChatMessage("")
 		sampAddChatMessage("")
@@ -2585,6 +2586,7 @@ function imgui.OnDrawFrame()
 		sampAddChatMessage("")
 		sampAddChatMessage("")
 		sampAddChatMessage("{9966cc} Medick Helper {ffffff}| Чат успешно очищен!", 0xFFFFFF)
+	btn_size = not btn_size	
 	end
 	imgui.Separator()
 	imgui.BeginChild("Информация", imgui.ImVec2(410, 150), true)
@@ -3998,7 +4000,7 @@ end
 function update()
     local updatePath = os.getenv('TEMP')..'\\Update.json'
     -- Проверка новой версии
-    downloadUrlToFile("https://raw.githubusercontent.com/TheChamtih/helpers/main/Update.json", updatePath, function(id, status, p1, p2)
+    downloadUrlToFile("https://raw.githubusercontent.com/RusWolhovsky/Medick_Helper_Ruslan_Wolhovsky.lua/main/update.json", updatePath, function(id, status, p1, p2)
         if status == dlstatus.STATUS_ENDDOWNLOADDATA then
             local file = io.open(updatePath, 'r')
             if file and doesFileExist(updatePath) then
@@ -4008,7 +4010,7 @@ function update()
                     lua_thread.create(function()
                         wait(2000)
                         -- Загрузка скрипта, если версия изменилась
-                        downloadUrlToFile("https://raw.githubusercontent.com/TheChamtih/helpers/main/Medick_Helper_Anastasia_Ellison.lu", thisScript().path, function(id, status, p1, p2)
+                        downloadUrlToFile("https://raw.githubusercontent.com/RusWolhovsky/Medick_Helper_Ruslan_Wolhovsky.lua/main/Medick_Helper_Ruslan_Wolhovsky.lua", thisScript().path, function(id, status, p1, p2)
                             if status == dlstatus.STATUS_ENDDOWNLOADDATA then
                                 ftext('Обновление до актуальной версии '..info.version..' обнаружено.')
                                 thisScript():reload()
